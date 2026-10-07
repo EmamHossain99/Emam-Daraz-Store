@@ -1,12 +1,696 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>EMAM STORE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EMAM DEALS | Best Products & Deals</title>
+<meta name="description" content="EMAM DEALS - Discover useful products and great deals.">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#080808;
+    color:#fff;
+}
+
+/* HEADER */
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(8,8,8,.95);
+    border-bottom:1px solid #292000;
+    backdrop-filter:blur(12px);
+}
+
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+    color:#ffd700;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:white;
+}
+
+.nav-btn{
+    color:#ffd700;
+    text-decoration:none;
+    border:1px solid #ffd700;
+    padding:9px 16px;
+    border-radius:25px;
+    font-size:14px;
+}
+
+/* HERO */
+.hero{
+    max-width:1200px;
+    margin:auto;
+    padding:65px 20px 45px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:clamp(38px,7vw,72px);
+    line-height:1;
+    margin-bottom:18px;
+}
+
+.hero h1 span{
+    color:#ffd700;
+}
+
+.hero p{
+    color:#aaa;
+    max-width:650px;
+    margin:auto;
+    line-height:1.7;
+    font-size:16px;
+}
+
+.hero-button{
+    display:inline-block;
+    margin-top:28px;
+    background:#ffd700;
+    color:#000;
+    padding:14px 28px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.hero-button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(255,215,0,.25);
+}
+
+/* SEARCH */
+.search-box{
+    max-width:650px;
+    margin:10px auto 30px;
+    padding:0 20px;
+}
+
+.search-box input{
+    width:100%;
+    padding:16px 20px;
+    border-radius:30px;
+    border:1px solid #393000;
+    outline:none;
+    background:#121212;
+    color:#fff;
+    font-size:15px;
+}
+
+.search-box input:focus{
+    border-color:#ffd700;
+}
+
+/* CATEGORIES */
+.categories{
+    max-width:1200px;
+    margin:10px auto 30px;
+    padding:0 20px;
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+}
+
+.category{
+    white-space:nowrap;
+    padding:10px 17px;
+    border-radius:25px;
+    border:1px solid #393000;
+    background:#111;
+    color:#ddd;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.category:hover,
+.category.active{
+    background:#ffd700;
+    color:#000;
+    border-color:#ffd700;
+}
+
+/* PRODUCTS */
+.section{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.section-title{
+    margin-bottom:25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.section-title h2{
+    font-size:28px;
+}
+
+.section-title span{
+    color:#ffd700;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+}
+
+.product{
+    position:relative;
+    background:#111;
+    border:1px solid #272200;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.35s;
+}
+
+.product:hover{
+    transform:translateY(-7px);
+    border-color:#ffd700;
+    box-shadow:0 15px 40px rgba(255,215,0,.10);
+}
+
+.product-image{
+    height:230px;
+    background:#fff;
+    position:relative;
+    overflow:hidden;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.product:hover img{
+    transform:scale(1.06);
+}
+
+.badge{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:#ffd700;
+    color:#000;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.product-info{
+    padding:17px;
+}
+
+.product-info h3{
+    font-size:17px;
+    margin-bottom:9px;
+}
+
+.product-info p{
+    color:#999;
+    font-size:13px;
+    line-height:1.5;
+    min-height:40px;
+}
+
+.price{
+    margin:14px 0;
+    color:#ffd700;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.buy-btn{
+    display:block;
+    text-align:center;
+    background:#ffd700;
+    color:#000;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.buy-btn:hover{
+    background:#fff;
+}
+
+/* FOOTER */
+footer{
+    margin-top:70px;
+    border-top:1px solid #292000;
+    background:#050505;
+    text-align:center;
+    padding:35px 20px;
+}
+
+footer h2{
+    color:#ffd700;
+    margin-bottom:10px;
+}
+
+footer p{
+    color:#888;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.social{
+    margin-top:20px;
+}
+
+.social a{
+    display:inline-block;
+    color:#ffd700;
+    text-decoration:none;
+    margin:5px 8px;
+    font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+    .products{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:650px){
+    .navbar{
+        padding:15px;
+    }
+
+    .logo{
+        font-size:21px;
+    }
+
+    .nav-btn{
+        font-size:12px;
+        padding:8px 12px;
+    }
+
+    .hero{
+        padding:45px 18px 30px;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
+    }
+
+    .product-image{
+        height:180px;
+    }
+
+    .product-info{
+        padding:12px;
+    }
+
+    .product-info h3{
+        font-size:15px;
+    }
+
+    .price{
+        font-size:17px;
+    }
+
+    .buy-btn{
+        font-size:13px;
+        padding:10px;
+    }
+}
+
+@media(max-width:390px){
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .product-image{
+        height:230px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <h1>EMAM STORE</h1>
-    <p>Welcome to my Daraz Affiliate Store</p>
+<header>
+    <div class="navbar">
+        <div class="logo">EMAM <span>DEALS</span></div>
+        <a href="#products" class="nav-btn">Shop Now</a>
+    </div>
+</header>
+
+<section class="hero">
+    <h1>Discover <span>Better</span><br>Products</h1>
+
+    <p>
+        Find useful products, trending items and amazing deals
+        in one place.
+    </p>
+
+    <a href="#products" class="hero-button">Explore Products</a>
+</section>
+
+<div class="search-box">
+    <input
+        type="text"
+        id="search"
+        placeholder="Search products..."
+        onkeyup="searchProducts()"
+    >
+</div>
+
+<div class="categories">
+    <button class="category active" onclick="filterProducts('all',this)">All</button>
+    <button class="category" onclick="filterProducts('mobile',this)">Mobile</button>
+    <button class="category" onclick="filterProducts('computer',this)">Computer</button>
+    <button class="category" onclick="filterProducts('fashion',this)">Fashion</button>
+    <button class="category" onclick="filterProducts('home',this)">Home</button>
+    <button class="category" onclick="filterProducts('gadget',this)">Gadgets</button>
+</div>
+
+<section class="section" id="products">
+
+    <div class="section-title">
+        <h2>🔥 <span>Featured</span> Products</h2>
+    </div>
+
+    <div class="products" id="productList">
+
+        <!-- PRODUCT 1 -->
+        <div class="product" data-category="gadget" data-name="Wireless Headphone">
+
+            <div class="product-image">
+                <span class="badge">HOT DEAL</span>
+
+                <img
+                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
+                    alt="Wireless Headphone"
+                >
+            </div>
+
+            <div class="product-info">
+                <h3>Wireless Headphone</h3>
+
+                <p>
+                    Stylish wireless headphone for music and entertainment.
+                </p>
+
+                <div class="price">৳ 1,299</div>
+
+                <a
+                    class="buy-btn"
+                    href="YOUR_DARAZ_AFFILIATE_LINK_1"
+                    target="_blank"
+                    rel="nofollow sponsored"
+                >
+                    BUY NOW
+                </a>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 2 -->
+        <div class="product" data-category="mobile" data-name="Smartphone">
+
+            <div class="product-image">
+                <span class="badge">POPULAR</span>
+
+                <img
+                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+                    alt="Smartphone"
+                >
+            </div>
+
+            <div class="product-info">
+                <h3>Smartphone</h3>
+
+                <p>
+                    Modern smartphone with stylish design and powerful features.
+                </p>
+
+                <div class="price">৳ 12,999</div>
+
+                <a
+                    class="buy-btn"
+                    href="YOUR_DARAZ_AFFILIATE_LINK_2"
+                    target="_blank"
+                    rel="nofollow sponsored"
+                >
+                    BUY NOW
+                </a>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 3 -->
+        <div class="product" data-category="computer" data-name="Gaming Keyboard">
+
+            <div class="product-image">
+                <span class="badge">GAMING</span>
+
+                <img
+                    src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80"
+                    alt="Gaming Keyboard"
+                >
+            </div>
+
+            <div class="product-info">
+                <h3>Gaming Keyboard</h3>
+
+                <p>
+                    Comfortable keyboard for gaming and everyday computer use.
+                </p>
+
+                <div class="price">৳ 1,499</div>
+
+                <a
+                    class="buy-btn"
+                    href="YOUR_DARAZ_AFFILIATE_LINK_3"
+                    target="_blank"
+                    rel="nofollow sponsored"
+                >
+                    BUY NOW
+                </a>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 4 -->
+        <div class="product" data-category="fashion" data-name="Casual Shoes">
+
+            <div class="product-image">
+                <span class="badge">TRENDING</span>
+
+                <img
+                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+                    alt="Casual Shoes"
+                >
+            </div>
+
+            <div class="product-info">
+                <h3>Casual Shoes</h3>
+
+                <p>
+                    Comfortable and stylish shoes for everyday use.
+                </p>
+
+                <div class="price">৳ 1,899</div>
+
+                <a
+                    class="buy-btn"
+                    href="YOUR_DARAZ_AFFILIATE_LINK_4"
+                    target="_blank"
+                    rel="nofollow sponsored"
+                >
+                    BUY NOW
+                </a>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 5 -->
+        <div class="product" data-category="home" data-name="Smart LED Light">
+
+            <div class="product-image">
+                <span class="badge">DEAL</span>
+
+                <img
+                    src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=800&q=80"
+                    alt="Smart LED Light"
+                >
+            </div>
+
+            <div class="product-info">
+                <h3>Smart LED Light</h3>
+
+                <p>
+                    Modern lighting solution for your room and workspace.
+                </p>
+
+                <div class="price">৳ 799</div>
+
+                <a
+                    class="buy-btn"
+                    href="YOUR_DARAZ_AFFILIATE_LINK_5"
+                    target="_blank"
+                    rel="nofollow sponsored"
+                >
+                    BUY NOW
+                </a>
+            </div>
+        </div>
+
+
+        <!-- PRODUCT 6 -->
+        <div class="product" data-category="gadget" data-name="Smart Watch">
+
+            <div class="product-image">
+                <span class="badge">NEW</span>
+
+                <img
+                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+                    alt="Smart Watch"
+                >
+            </div>
+
+            <div class="product-info">
+                <h3>Smart Watch</h3>
+
+                <p>
+                    Stylish smartwatch for daily activities and notifications.
+                </p>
+
+                <div class="price">৳ 1,599</div>
+
+                <a
+                    class="buy-btn"
+                    href="YOUR_DARAZ_AFFILIATE_LINK_6"
+                    target="_blank"
+                    rel="nofollow sponsored"
+                >
+                    BUY NOW
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+
+    <h2>EMAM DEALS</h2>
+
+    <p>
+        Discover useful products and great deals.
+        Product prices and availability may change.
+    </p>
+
+    <div class="social">
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+        <a href="#">WhatsApp</a>
+    </div>
+
+    <p style="margin-top:20px;">
+        © 2026 EMAM DEALS. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+/* SEARCH */
+function searchProducts(){
+
+    let input =
+        document.getElementById("search").value.toLowerCase();
+
+    let products =
+        document.querySelectorAll(".product");
+
+    products.forEach(function(product){
+
+        let name =
+            product.getAttribute("data-name").toLowerCase();
+
+        if(name.includes(input)){
+            product.style.display = "";
+        }else{
+            product.style.display = "none";
+        }
+
+    });
+}
+
+
+/* CATEGORY FILTER */
+function filterProducts(category,button){
+
+    let products =
+        document.querySelectorAll(".product");
+
+    let buttons =
+        document.querySelectorAll(".category");
+
+    buttons.forEach(function(btn){
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    products.forEach(function(product){
+
+        if(category === "all" ||
+           product.getAttribute("data-category") === category){
+
+            product.style.display = "";
+
+        }else{
+
+            product.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
 
 </body>
 </html>
